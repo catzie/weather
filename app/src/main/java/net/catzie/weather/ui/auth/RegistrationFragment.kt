@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import net.catzie.weather.R
 import net.catzie.weather.databinding.FragmentRegistrationBinding
 
 class RegistrationFragment : Fragment() {
@@ -27,4 +29,13 @@ class RegistrationFragment : Fragment() {
         binding = FragmentRegistrationBinding.inflate(inflater, container, false)
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnLoginFromRegister.setOnClickListener {
+            findNavController().navigate(R.id.action_registrationFragment_to_loginFragment2)
+        }
+    }
+
 }

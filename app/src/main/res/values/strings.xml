@@ -6,4 +6,8 @@
     <string name="action_login">Login</string>
     <string name="btn_label_login">Login</string>
     <string name="btn_label_register_from_login">No account yet? Click to register!</string>
+    <string name="input_hint_firstname">First Name</string>
+    <string name="input_hint_lastname">Last Name</string>
+    <string name="btn_label_register">Register</string>
+    <string name="btn_label_login_from_reg">Already registered? Click to login!</string>
 </resources>

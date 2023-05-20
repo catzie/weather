@@ -1,4 +1,4 @@
-package net.catzie.weather.ui.auth.ui.auth
+package net.catzie.weather.ui.auth
 
 import androidx.lifecycle.ViewModel
 

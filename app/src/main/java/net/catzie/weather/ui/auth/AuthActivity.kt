@@ -3,7 +3,6 @@ package net.catzie.weather.ui.auth
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import net.catzie.weather.R
-import net.catzie.weather.ui.auth.ui.auth.LoginFragment
 
 class AuthActivity : AppCompatActivity() {
 

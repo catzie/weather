@@ -10,4 +10,5 @@
     <string name="input_hint_lastname">Last Name</string>
     <string name="btn_label_register">Register</string>
     <string name="btn_label_login_from_reg">Already registered? Click to login!</string>
+    <string name="action_register">Register</string>
 </resources>

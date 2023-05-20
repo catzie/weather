@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="@string/input_hint_lastname"
-        android:imeActionLabel="@string/action_login"
+        android:imeActionLabel="@string/action_register"
         android:imeOptions="actionDone"
         android:inputType="text"
         android:selectAllOnFocus="true"

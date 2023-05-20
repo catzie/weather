@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import net.catzie.weather.ui.auth.R
+import net.catzie.weather.R
 
 class LoginFragment : Fragment() {
 

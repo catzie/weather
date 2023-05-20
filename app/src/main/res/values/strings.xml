@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Weather</string>
+
+    <string name="input_hint_username">Username</string>
+    <string name="input_hint_password">Password</string>
+    <string name="action_login">Login</string>
+    <string name="btn_label_login">Login</string>
+    <string name="btn_label_register_from_login">No account yet? Click to register!</string>
 </resources>

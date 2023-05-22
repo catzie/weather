@@ -15,4 +15,6 @@
     <string name="registration_res_failed">Registration Failed</string>
     <string name="login_res_success">Login Success</string>
     <string name="registration_res_success">Registration Success</string>
+    <string name="weather_res_failed">Error: Failed to fetch current weather</string>
+    <string name="weather_res_success">Fetched current weather!</string>
 </resources>

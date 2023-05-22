@@ -32,6 +32,13 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnLogin.setOnClickListener {
+            viewModel.onClickLogin(
+                binding.etUsername.text.toString(),
+                binding.etPassword.text.toString(),
+            )
+        }
+
         binding.btnRegisterFromLogin.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
         }

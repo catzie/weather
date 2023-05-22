@@ -13,11 +13,7 @@ import net.catzie.weather.R
 import net.catzie.weather.databinding.FragmentWeatherHistoryBinding
 import net.catzie.weather.model.ApiResult
 import net.catzie.weather.model.weather.WeatherHistoryEntity
-import timber.log.Timber
 
-/**
- * A fragment representing a list of Items.
- */
 class WeatherHistoryFragment : Fragment() {
 
     private lateinit var binding: FragmentWeatherHistoryBinding
@@ -72,7 +68,6 @@ class WeatherHistoryFragment : Fragment() {
     }
 
     private fun displayWeatherHistory(apiResult: ApiResult<List<WeatherHistoryEntity>>?) {
-        Timber.e("historyfragment: $apiResult")
 
         when (apiResult) {
 
@@ -102,14 +97,5 @@ class WeatherHistoryFragment : Fragment() {
 
         // TODO: Customize parameter argument names
         const val ARG_COLUMN_COUNT = "column-count"
-
-        // TODO: Customize parameter initialization
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            WeatherHistoryFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
-                }
-            }
     }
 }

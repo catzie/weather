@@ -13,4 +13,6 @@
     <string name="action_register">Register</string>
     <string name="login_res_failed">Login Failed</string>
     <string name="registration_res_failed">Registration Failed</string>
+    <string name="login_res_success">Login Success</string>
+    <string name="registration_res_success">Registration Success</string>
 </resources>

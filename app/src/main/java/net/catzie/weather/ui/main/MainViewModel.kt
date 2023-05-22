@@ -16,7 +16,6 @@ import net.catzie.weather.model.ApiResult
 import net.catzie.weather.model.weather.WeatherHistoryEntity
 import net.catzie.weather.model.weather.WeatherRequest
 import net.catzie.weather.model.weather.WeatherResponse
-import timber.log.Timber
 
 class MainViewModel(
     weatherRepository: WeatherRepository,
@@ -40,17 +39,6 @@ class MainViewModel(
                 res.body()?.let { weather ->
 
                     _weather.value = ApiResult.Success(weather)
-
-                    //todo remove this chunk after storage
-                    with(weather) {
-                        Timber.d("weatherRequest: weather=${weather}")
-                        Timber.d("weatherRequest: city=${name}")
-                        Timber.d("weatherRequest: country=${sys.country}")
-                        Timber.d("weatherRequest: temp=${main.temp}")
-                        Timber.d("weatherRequest: sunrise=${sys.sunrise}")
-                        Timber.d("weatherRequest: sunset=${sys.sunset}")
-
-                    }
 
                     //save to storage
                     val weatherHistory =

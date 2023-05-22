@@ -22,18 +22,18 @@ class AuthSessionManager(private val context: Context) {
         )
     }
 
-    fun saveToken(token: String) {
+    fun saveUserId(userId: String) {
         encryptedPreferences.edit().apply {
-            putString(KEY_TOKEN, token)
+            putString(KEY_USER_ID, userId)
         }.apply()
     }
 
-    fun loadToken(): String? {
-        return encryptedPreferences.getString(KEY_TOKEN, null)
+    fun loadUserId(): String? {
+        return encryptedPreferences.getString(KEY_USER_ID, null)
     }
 
     companion object {
-        private const val KEY_TOKEN = "KEY_TOKEN"
+        private const val KEY_USER_ID = "KEY_USER_ID"
         private const val ENC_SHARED_PREFS_NAME = "ENC_SHARED_PREFS_NAME"
     }
 

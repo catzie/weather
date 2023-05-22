@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import net.catzie.weather.R
 import net.catzie.weather.databinding.FragmentRegistrationBinding
@@ -14,12 +14,10 @@ class RegistrationFragment : Fragment() {
 
     private lateinit var binding: FragmentRegistrationBinding
 
-    private lateinit var viewModel: AuthViewModel
+    private val viewModel: AuthViewModel by activityViewModels { AuthViewModel.Factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onCreateView(

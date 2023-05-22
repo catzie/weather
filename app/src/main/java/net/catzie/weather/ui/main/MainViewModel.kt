@@ -25,7 +25,6 @@ class MainViewModel(weatherRepository: WeatherRepository, authSessionManager: Au
             WeatherRequest(COORD_TAGUIG.first, COORD_TAGUIG.second, BuildConfig.API_KEY)
         viewModelScope.launch {
             val res = weatherRepository.getWeather(weatherRequest)
-            Timber.d("weatherRequest: res vm: ${res.body()}")
 
             if (res.code() == 200) {
 
@@ -34,6 +33,16 @@ class MainViewModel(weatherRepository: WeatherRepository, authSessionManager: Au
 
                     _weather.value = ApiResult.Success(weather)
 
+                    //todo remove this chunk after storage
+                    with(weather) {
+                        Timber.d("weatherRequest: weather=${weather}")
+                        Timber.d("weatherRequest: city=${name}")
+                        Timber.d("weatherRequest: country=${sys.country}")
+                        Timber.d("weatherRequest: temp=${main.temp}")
+                        Timber.d("weatherRequest: sunrise=${sys.sunrise}")
+                        Timber.d("weatherRequest: sunset=${sys.sunset}")
+
+                    }
                     //todo save to storage
                 }
             } else {

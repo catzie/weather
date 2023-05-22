@@ -8,8 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import net.catzie.weather.R
+import net.catzie.weather.databinding.FragmentWeatherHistoryBinding
 import net.catzie.weather.model.ApiResult
 import net.catzie.weather.model.weather.WeatherHistoryEntity
 import net.catzie.weather.ui.main.placeholder.PlaceholderContent
@@ -19,6 +18,7 @@ import timber.log.Timber
  * A fragment representing a list of Items.
  */
 class WeatherHistoryFragment : Fragment() {
+    private lateinit var binding: FragmentWeatherHistoryBinding
 
     private var columnCount = 1
 
@@ -38,25 +38,30 @@ class WeatherHistoryFragment : Fragment() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_weather_history, container, false)
+    ): View {
+
+        binding = FragmentWeatherHistoryBinding.inflate(inflater, container, false)
 
         // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = WeatherHistoryRecyclerViewAdapter(PlaceholderContent.ITEMS)
-            }
-        }
-
+        setUpRecyclerView()
         setUpObservers()
 
-        return view
+        return binding.root
+    }
+
+    private fun setUpRecyclerView() {
+
+        with(binding.rvWeatherHistory) {
+
+            layoutManager =
+                if (columnCount <= 1) LinearLayoutManager(context)
+                else GridLayoutManager(context, columnCount)
+
+            adapter = WeatherHistoryRecyclerViewAdapter(PlaceholderContent.ITEMS)
+        }
     }
 
     private fun setUpObservers() {

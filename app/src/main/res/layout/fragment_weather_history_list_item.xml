@@ -5,36 +5,15 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/id_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="8dp"
-        android:text="id: "
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/id"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/id"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/id_label"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="id" />
-
-    <TextView
         android:id="@+id/weather_main_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="8dp"
-        android:text="weather main: "
+        android:text="weather: "
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/weather_main"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_label" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/weather_main"
@@ -43,7 +22,7 @@
         android:paddingRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/weather_main_label"
-        app:layout_constraintTop_toBottomOf="@id/id_label"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="weather_main" />
 
 
@@ -52,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="8dp"
-        android:text="weather description: "
+        android:text="description: "
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/weather_main_label" />
@@ -72,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="8dp"
-        android:text="weather icon: "
+        android:text="icon label: "
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/weather_description_label" />

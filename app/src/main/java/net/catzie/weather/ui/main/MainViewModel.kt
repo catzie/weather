@@ -2,19 +2,27 @@ package net.catzie.weather.ui.main
 
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.CreationExtras
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import net.catzie.weather.BuildConfig
 import net.catzie.weather.COORD_TAGUIG
 import net.catzie.weather.MyApplication
 import net.catzie.weather.R
 import net.catzie.weather.datasource.auth.AuthSessionManager
+import net.catzie.weather.datasource.weather.WeatherHistoryRepository
 import net.catzie.weather.datasource.weather.WeatherRepository
 import net.catzie.weather.model.ApiResult
+import net.catzie.weather.model.weather.WeatherHistoryEntity
 import net.catzie.weather.model.weather.WeatherRequest
 import net.catzie.weather.model.weather.WeatherResponse
 import timber.log.Timber
 
-class MainViewModel(weatherRepository: WeatherRepository, authSessionManager: AuthSessionManager) :
+class MainViewModel(
+    weatherRepository: WeatherRepository,
+    weatherHistoryRepository: WeatherHistoryRepository,
+    authSessionManager: AuthSessionManager,
+) :
     ViewModel() {
 
     private val _weather = MutableLiveData<ApiResult<WeatherResponse>>()
@@ -43,7 +51,24 @@ class MainViewModel(weatherRepository: WeatherRepository, authSessionManager: Au
                         Timber.d("weatherRequest: sunset=${sys.sunset}")
 
                     }
-                    //todo save to storage
+
+                    //save to storage
+                    val weatherHistory =
+                        WeatherHistoryEntity(
+                            null,
+                            weather.weather.first().main,
+                            weather.weather.first().description,
+                            weather.weather.first().icon,
+                            weather.name,
+                            weather.sys.country,
+                            weather.main.temp,
+                            weather.sys.sunrise,
+                            weather.sys.sunset,
+                        )
+
+                    CoroutineScope(Dispatchers.IO).launch {
+                        weatherHistoryRepository.insert(weatherHistory)
+                    }
                 }
             } else {
 
@@ -66,8 +91,10 @@ class MainViewModel(weatherRepository: WeatherRepository, authSessionManager: Au
                         checkNotNull(extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY])
                     return MainViewModel(
                         WeatherRepository((application as MyApplication).apiInterface),
+                        (application as MyApplication).weatherHistoryRepository,
                         (application as MyApplication).authSessionManager
                     ) as T
+
                 }
                 throw IllegalArgumentException("Unknown ViewModel class")
             }

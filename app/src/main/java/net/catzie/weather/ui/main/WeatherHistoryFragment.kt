@@ -4,21 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import net.catzie.weather.R
 import net.catzie.weather.databinding.FragmentWeatherHistoryBinding
 import net.catzie.weather.model.ApiResult
 import net.catzie.weather.model.weather.WeatherHistoryEntity
-import net.catzie.weather.ui.main.placeholder.PlaceholderContent
 import timber.log.Timber
 
 /**
  * A fragment representing a list of Items.
  */
 class WeatherHistoryFragment : Fragment() {
+
     private lateinit var binding: FragmentWeatherHistoryBinding
+    val weatherHistoryAdapter = WeatherHistoryRecyclerViewAdapter(listOf())
 
     private var columnCount = 1
 
@@ -60,7 +63,7 @@ class WeatherHistoryFragment : Fragment() {
                 if (columnCount <= 1) LinearLayoutManager(context)
                 else GridLayoutManager(context, columnCount)
 
-            adapter = WeatherHistoryRecyclerViewAdapter(PlaceholderContent.ITEMS)
+            adapter = weatherHistoryAdapter
         }
     }
 
@@ -70,6 +73,29 @@ class WeatherHistoryFragment : Fragment() {
 
     private fun displayWeatherHistory(apiResult: ApiResult<List<WeatherHistoryEntity>>?) {
         Timber.e("historyfragment: $apiResult")
+
+        when (apiResult) {
+
+            is ApiResult.Error -> {
+
+                // Display error message
+                val toastMessage = "Error: " + getString(apiResult.errorResId)
+                Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
+            }
+
+            is ApiResult.Success -> {
+
+                // Display success message
+                val toastMessage = getString(R.string.weather_history_res_success)
+                Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
+
+                // Update history
+                weatherHistoryAdapter.updateData(apiResult.data)
+            }
+
+            else -> {}
+        }
+
     }
 
     companion object {

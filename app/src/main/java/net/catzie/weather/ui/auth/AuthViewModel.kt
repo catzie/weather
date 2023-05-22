@@ -32,7 +32,8 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
 
                     // todo Save token or user info
 
-                    // todo Give signal to log user in on success
+                    //  Give signal to log user in on success
+                    signalUiToLogUserIn(auth)
 
                 }
             } else {
@@ -54,13 +55,19 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
                 result.body()?.let { auth ->
                     // todo Save token or user info
 
-                    // todo Give signal to log user in on success
+                    //  Give signal to log user in on success
+                    signalUiToLogUserIn(auth)
+
                 }
             } else {
                 _registrationResult.value = ApiResult.Error(R.string.registration_res_failed)
             }
         }
 
+    }
+
+    private fun signalUiToLogUserIn(auth: FakeAuthResponse) {
+        _loginResult.value = ApiResult.Success(auth)
     }
 
     companion object {

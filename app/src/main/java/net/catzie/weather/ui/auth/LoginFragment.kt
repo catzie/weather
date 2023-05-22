@@ -1,14 +1,19 @@
 package net.catzie.weather.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import net.catzie.weather.R
 import net.catzie.weather.databinding.FragmentLoginBinding
+import net.catzie.weather.model.ApiResult
+import net.catzie.weather.model.FakeAuthResponse
+import net.catzie.weather.ui.main.MainActivity
 
 class LoginFragment : Fragment() {
 
@@ -42,5 +47,40 @@ class LoginFragment : Fragment() {
         binding.btnRegisterFromLogin.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
         }
+
+        setUpObservers()
+
     }
+
+    private fun setUpObservers() {
+        viewModel.loginResult.observe(viewLifecycleOwner, ::displayLoginResult)
+    }
+
+    private fun displayLoginResult(apiResult: ApiResult<FakeAuthResponse>) {
+
+        when (apiResult) {
+
+            is ApiResult.Error -> {
+
+                // Display success message
+                val toastMessage = "Error: " + getString(apiResult.errorResId)
+                Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
+            }
+
+            is ApiResult.Success -> {
+
+                // Display success message
+                val toastMessage = getString(R.string.login_res_success)
+                Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
+
+                // Launch MainActivity
+                val intent = Intent(activity, MainActivity::class.java)
+                activity?.startActivity(intent)
+
+                // Exit AuthActivity
+                activity?.finish()
+            }
+        }
+    }
+
 }

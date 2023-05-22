@@ -9,6 +9,10 @@ import retrofit2.Response
 class WeatherRepository(private val apiInterface: ApiInterface) {
 
     suspend fun getWeather(weatherRequest: WeatherRequest): Response<WeatherResponse> {
-        return apiInterface.getWeather(weatherRequest)
+
+        val result =
+            apiInterface.getWeather(weatherRequest.lat, weatherRequest.lon, weatherRequest.appId)
+
+        return result
     }
 }

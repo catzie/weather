@@ -12,5 +12,5 @@ interface WeatherHistoryDao {
     fun getAll(): List<WeatherHistoryEntity>
 
     @Insert
-    fun insertAll(users: WeatherHistoryEntity)
+    fun insertAll(weatherHistoryEntity: WeatherHistoryEntity): Long
 }

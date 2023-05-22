@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "weather_history")
 data class WeatherHistoryEntity(
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "weather") val weather: String,

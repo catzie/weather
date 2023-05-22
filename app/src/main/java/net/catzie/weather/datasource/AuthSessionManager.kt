@@ -6,7 +6,7 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 
 
-class AuthTokenManager(private val context: Context) {
+class AuthSessionManager(private val context: Context) {
 
     private val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
     private val encryptedPreferences: SharedPreferences

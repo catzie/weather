@@ -19,4 +19,5 @@
     <string name="weather_res_success">Fetched current weather!</string>
     <string name="tab_current">Current</string>
     <string name="tab_history">History</string>
+    <string name="weather_history_res_failed">Error: Failed to load saved weather history.</string>
 </resources>

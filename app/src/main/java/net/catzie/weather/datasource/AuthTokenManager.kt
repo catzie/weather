@@ -14,7 +14,7 @@ class AuthTokenManager(private val context: Context) {
     init {
 
         encryptedPreferences = EncryptedSharedPreferences.create(
-            "sharedprefsname",
+            ENC_SHARED_PREFS_NAME,
             masterKeyAlias,
             context,
             EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
@@ -22,5 +22,19 @@ class AuthTokenManager(private val context: Context) {
         )
     }
 
+    fun saveToken(token: String) {
+        encryptedPreferences.edit().apply {
+            putString(KEY_TOKEN, token)
+        }.apply()
+    }
+
+    fun loadToken(): String? {
+        return encryptedPreferences.getString(KEY_TOKEN, null)
+    }
+
+    companion object {
+        private const val KEY_TOKEN = "KEY_TOKEN"
+        private const val ENC_SHARED_PREFS_NAME = "ENC_SHARED_PREFS_NAME"
+    }
 
 }

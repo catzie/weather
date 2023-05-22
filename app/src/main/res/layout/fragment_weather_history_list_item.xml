@@ -1,20 +1,201 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/item_number"
+        android:id="@+id/id_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:paddingLeft="8dp"
+        android:text="id: "
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/id"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/content"
+        android:id="@+id/id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/id_label"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="id" />
+
+    <TextView
+        android:id="@+id/weather_main_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:textAppearance="?attr/textAppearanceListItem" />
-</LinearLayout>
+        android:paddingLeft="8dp"
+        android:text="weather main: "
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/weather_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/id_label" />
+
+    <TextView
+        android:id="@+id/weather_main"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/weather_main_label"
+        app:layout_constraintTop_toBottomOf="@id/id_label"
+        tools:text="weather_main" />
+
+
+    <TextView
+        android:id="@+id/weather_description_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:text="weather description: "
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weather_main_label" />
+
+    <TextView
+        android:id="@+id/weather_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingRight="8dp"
+        android:text="weather_description: "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/weather_description_label"
+        app:layout_constraintTop_toBottomOf="@id/weather_main" />
+
+    <TextView
+        android:id="@+id/weather_icon_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:text="weather icon: "
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weather_description_label" />
+
+    <TextView
+        android:id="@+id/weather_icon"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingRight="8dp"
+        android:text="weather_icon: "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/weather_icon_label"
+        app:layout_constraintTop_toBottomOf="@id/weather_description" />
+
+    <TextView
+        android:id="@+id/city_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:text="city: "
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weather_icon_label" />
+
+    <TextView
+        android:id="@+id/city"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/city_label"
+        app:layout_constraintTop_toBottomOf="@id/weather_icon"
+        tools:text="city" />
+
+    <TextView
+        android:id="@+id/country_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:text="country: "
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/city_label" />
+
+    <TextView
+        android:id="@+id/country"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/country_label"
+        app:layout_constraintTop_toBottomOf="@id/city"
+        tools:text="country" />
+
+    <TextView
+        android:id="@+id/temp_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:text="temperature: "
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/country_label" />
+
+    <TextView
+        android:id="@+id/temp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/temp_label"
+        app:layout_constraintTop_toBottomOf="@id/country"
+        tools:text="temp" />
+
+    <TextView
+        android:id="@+id/sunriseTime_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:text="sunrise time: "
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/temp_label" />
+
+    <TextView
+        android:id="@+id/sunriseTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/sunriseTime_label"
+        app:layout_constraintTop_toBottomOf="@id/temp"
+        tools:text="sunriseTime" />
+
+    <TextView
+        android:id="@+id/sunsetTime_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:text="sunset time:"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/sunsetTime"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/sunsetTime" />
+
+    <TextView
+        android:id="@+id/sunsetTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/sunsetTime_label"
+        app:layout_constraintTop_toBottomOf="@id/sunriseTime"
+        tools:text="sunsetTime" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="#cccccc"
+        android:paddingTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sunsetTime_label" />
+</androidx.constraintlayout.widget.ConstraintLayout>

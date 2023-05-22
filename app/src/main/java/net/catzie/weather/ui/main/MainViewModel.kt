@@ -6,6 +6,7 @@ import kotlinx.coroutines.launch
 import net.catzie.weather.BuildConfig
 import net.catzie.weather.COORD_TAGUIG
 import net.catzie.weather.MyApplication
+import net.catzie.weather.R
 import net.catzie.weather.datasource.auth.AuthSessionManager
 import net.catzie.weather.datasource.weather.WeatherRepository
 import net.catzie.weather.model.ApiResult
@@ -25,6 +26,21 @@ class MainViewModel(weatherRepository: WeatherRepository, authSessionManager: Au
         viewModelScope.launch {
             val res = weatherRepository.getWeather(weatherRequest)
             Timber.d("weatherRequest: res vm: ${res.body()}")
+
+            if (res.code() == 200) {
+
+                // Handle success
+                res.body()?.let { weather ->
+
+                    _weather.value = ApiResult.Success(weather)
+
+                    //todo save to storage
+                }
+            } else {
+
+                // Handle error
+                _weather.value = ApiResult.Error(R.string.weather_res_failed)
+            }
         }
     }
 

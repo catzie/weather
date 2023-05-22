@@ -18,16 +18,47 @@ import net.catzie.weather.model.weather.WeatherRequest
 import net.catzie.weather.model.weather.WeatherResponse
 
 class MainViewModel(
-    weatherRepository: WeatherRepository,
-    weatherHistoryRepository: WeatherHistoryRepository,
-    authSessionManager: AuthSessionManager,
+    private val weatherRepository: WeatherRepository,
+    private val weatherHistoryRepository: WeatherHistoryRepository,
+    private val authSessionManager: AuthSessionManager,
 ) :
     ViewModel() {
 
     private val _weather = MutableLiveData<ApiResult<WeatherResponse>>()
     val weather: LiveData<ApiResult<WeatherResponse>> = _weather
 
+    private val _history = MutableLiveData<ApiResult<List<WeatherHistoryEntity>>>()
+    val history: LiveData<ApiResult<List<WeatherHistoryEntity>>> = _history
+
     init {
+        requestCurrentWeather()
+    }
+
+
+    fun testCall() {
+
+    }
+
+    fun onWeatherHistoryFragmentCreated() {
+        requestWeatherHistory()
+    }
+
+    private fun requestWeatherHistory() {
+        CoroutineScope(Dispatchers.IO).launch {
+
+            val res = weatherHistoryRepository.get()
+
+            if (res.isNotEmpty()) {
+                //Handle success
+                _history.postValue(ApiResult.Success(res))
+            } else {
+                // Handle error
+                _history.postValue(ApiResult.Error(R.string.weather_history_res_failed))
+            }
+        }
+    }
+
+    private fun requestCurrentWeather() {
         val weatherRequest =
             WeatherRequest(COORD_TAGUIG.first, COORD_TAGUIG.second, BuildConfig.API_KEY)
         viewModelScope.launch {
@@ -66,14 +97,13 @@ class MainViewModel(
         }
     }
 
-    fun testCall() {
-
-    }
-
     companion object {
         val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
+            override fun <T : ViewModel> create(
+                modelClass: Class<T>,
+                extras: CreationExtras
+            ): T {
                 if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
                     val application =
                         checkNotNull(extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY])

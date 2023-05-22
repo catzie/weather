@@ -4,6 +4,11 @@ plugins {
 }
 
 android {
+
+    def secretPropertiesFile = rootProject.file("keys.properties")
+    def secretProperties = new Properties()
+    secretProperties.load(new FileInputStream(secretPropertiesFile))
+
     namespace 'net.catzie.weather'
     compileSdk 33
 
@@ -15,6 +20,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "API_BASE_URL", secretProperties['API_BASE_URL'])
+        buildConfigField("String", "API_KEY", secretProperties['API_KEY'])
+
     }
 
     buildTypes {

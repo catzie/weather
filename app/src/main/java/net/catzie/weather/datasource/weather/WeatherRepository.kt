@@ -1,8 +1,8 @@
 package net.catzie.weather.datasource.weather
 
 import net.catzie.weather.datasource.ApiInterface
-import net.catzie.weather.model.WeatherRequest
-import net.catzie.weather.model.WeatherResponse
+import net.catzie.weather.model.weather.WeatherRequest
+import net.catzie.weather.model.weather.WeatherResponse
 import retrofit2.Response
 
 

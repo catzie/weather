@@ -3,15 +3,15 @@ package net.catzie.weather.ui.auth
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.CreationExtras
 import kotlinx.coroutines.launch
-import net.catzie.social.model.auth.AuthLoginInput
-import net.catzie.social.model.auth.AuthRegisterInput
 import net.catzie.weather.MyApplication
 import net.catzie.weather.R
 import net.catzie.weather.datasource.auth.AuthRepository
 import net.catzie.weather.datasource.auth.AuthSessionManager
 import net.catzie.weather.datasource.auth.MockAuthApi
 import net.catzie.weather.model.ApiResult
-import net.catzie.weather.model.FakeAuthResponse
+import net.catzie.weather.model.auth.AuthLoginInput
+import net.catzie.weather.model.auth.AuthRegisterInput
+import net.catzie.weather.model.auth.FakeAuthResponse
 
 class AuthViewModel(
     private val authRepository: AuthRepository,

@@ -1,8 +1,8 @@
 package net.catzie.weather.datasource.auth
 
-import net.catzie.social.model.auth.AuthLoginInput
-import net.catzie.social.model.auth.AuthRegisterInput
-import net.catzie.weather.model.FakeAuthResponse
+import net.catzie.weather.model.auth.AuthLoginInput
+import net.catzie.weather.model.auth.AuthRegisterInput
+import net.catzie.weather.model.auth.FakeAuthResponse
 
 
 class AuthRepository(private val mockAuthApi: MockAuthApi) {

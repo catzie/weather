@@ -1,9 +1,9 @@
 package net.catzie.weather.datasource
 
 import com.google.common.truth.Truth.assertThat
-import net.catzie.social.model.auth.AuthLoginInput
-import net.catzie.social.model.auth.AuthRegisterInput
 import net.catzie.weather.datasource.auth.MockAuthApi
+import net.catzie.weather.model.auth.AuthLoginInput
+import net.catzie.weather.model.auth.AuthRegisterInput
 import org.junit.Before
 import org.junit.Test
 

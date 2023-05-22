@@ -1,8 +1,8 @@
 package net.catzie.weather.datasource.auth
 
-import net.catzie.social.model.auth.AuthLoginInput
-import net.catzie.social.model.auth.AuthRegisterInput
-import net.catzie.weather.model.FakeAuthResponse
+import net.catzie.weather.model.auth.AuthLoginInput
+import net.catzie.weather.model.auth.AuthRegisterInput
+import net.catzie.weather.model.auth.FakeAuthResponse
 import net.catzie.weather.ui.main.Utils.Randoms.getRandomId
 
 class MockAuthApi { // Non-mocked version will be ApiInterface

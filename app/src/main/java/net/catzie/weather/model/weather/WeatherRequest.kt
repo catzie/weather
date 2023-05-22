@@ -1,4 +1,4 @@
-package net.catzie.weather.model
+package net.catzie.weather.model.weather
 
 data class WeatherRequest(
     val lat: Double,

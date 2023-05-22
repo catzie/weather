@@ -10,8 +10,8 @@ import net.catzie.weather.R
 import net.catzie.weather.datasource.auth.AuthSessionManager
 import net.catzie.weather.datasource.weather.WeatherRepository
 import net.catzie.weather.model.ApiResult
-import net.catzie.weather.model.WeatherRequest
-import net.catzie.weather.model.WeatherResponse
+import net.catzie.weather.model.weather.WeatherRequest
+import net.catzie.weather.model.weather.WeatherResponse
 import timber.log.Timber
 
 class MainViewModel(weatherRepository: WeatherRepository, authSessionManager: AuthSessionManager) :

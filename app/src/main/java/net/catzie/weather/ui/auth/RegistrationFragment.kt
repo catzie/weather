@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import net.catzie.weather.R
 import net.catzie.weather.databinding.FragmentRegistrationBinding
 import net.catzie.weather.model.ApiResult
-import net.catzie.weather.model.FakeAuthResponse
+import net.catzie.weather.model.auth.FakeAuthResponse
 import net.catzie.weather.ui.main.MainActivity
 
 class RegistrationFragment : Fragment() {

@@ -1,6 +1,6 @@
 package net.catzie.weather.datasource
 
-import net.catzie.weather.model.WeatherResponse
+import net.catzie.weather.model.weather.WeatherResponse
 import retrofit2.Response
 import retrofit2.http.*
 

@@ -1,4 +1,4 @@
-package net.catzie.weather.ui.main
+package net.catzie.weather
 
 import kotlin.math.abs
 

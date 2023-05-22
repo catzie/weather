@@ -64,7 +64,7 @@ class LoginFragment : Fragment() {
 
             is ApiResult.Error -> {
 
-                // Display success message
+                // Display error message
                 val toastMessage = "Error: " + getString(apiResult.errorResId)
                 Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
             }

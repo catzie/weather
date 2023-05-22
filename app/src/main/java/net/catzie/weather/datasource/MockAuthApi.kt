@@ -2,7 +2,7 @@ package net.catzie.weather.datasource
 
 import net.catzie.social.model.auth.AuthLoginInput
 import net.catzie.social.model.auth.AuthRegisterInput
-import net.catzie.weather.model.AuthResponse
+import net.catzie.weather.model.FakeAuthResponse
 import net.catzie.weather.ui.main.Utils.Randoms.getRandomId
 
 class MockAuthApi { // Non-mocked version will be ApiInterface
@@ -21,7 +21,7 @@ class MockAuthApi { // Non-mocked version will be ApiInterface
             } else {
                 //todo success
                 mockRetrofitResponse.code = 200
-                mockRetrofitResponse.body = AuthResponse(getRandomId().toString())
+                mockRetrofitResponse.body = FakeAuthResponse(getRandomId().toString())
             }
         }
 
@@ -41,7 +41,7 @@ class MockAuthApi { // Non-mocked version will be ApiInterface
             } else {
                 //todo success
                 mockRetrofitResponse.code = 200
-                mockRetrofitResponse.body = AuthResponse(getRandomId().toString())
+                mockRetrofitResponse.body = FakeAuthResponse(getRandomId().toString())
             }
         }
 

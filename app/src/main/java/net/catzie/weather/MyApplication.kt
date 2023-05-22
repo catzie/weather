@@ -6,6 +6,8 @@ import net.catzie.weather.datasource.RetrofitClient
 import net.catzie.weather.datasource.auth.AuthSessionManager
 import timber.log.Timber
 
+val COORD_TAGUIG = Pair(14.5176, 121.0509)
+
 class MyApplication : Application() {
 
     private val retrofit by lazy { RetrofitClient.getInstance() }

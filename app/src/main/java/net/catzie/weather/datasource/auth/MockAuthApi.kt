@@ -1,4 +1,4 @@
-package net.catzie.weather.datasource
+package net.catzie.weather.datasource.auth
 
 import net.catzie.social.model.auth.AuthLoginInput
 import net.catzie.social.model.auth.AuthRegisterInput

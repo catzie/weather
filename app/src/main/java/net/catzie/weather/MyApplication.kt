@@ -1,7 +1,9 @@
 package net.catzie.weather
 
 import android.app.Application
-import net.catzie.weather.datasource.AuthSessionManager
+import net.catzie.weather.datasource.ApiInterface
+import net.catzie.weather.datasource.RetrofitClient
+import net.catzie.weather.datasource.auth.AuthSessionManager
 import timber.log.Timber
 
 class MyApplication : Application() {

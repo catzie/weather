@@ -7,9 +7,9 @@ import net.catzie.social.model.auth.AuthLoginInput
 import net.catzie.social.model.auth.AuthRegisterInput
 import net.catzie.weather.MyApplication
 import net.catzie.weather.R
-import net.catzie.weather.datasource.AuthRepository
-import net.catzie.weather.datasource.AuthSessionManager
-import net.catzie.weather.datasource.MockAuthApi
+import net.catzie.weather.datasource.auth.AuthRepository
+import net.catzie.weather.datasource.auth.AuthSessionManager
+import net.catzie.weather.datasource.auth.MockAuthApi
 import net.catzie.weather.model.ApiResult
 import net.catzie.weather.model.FakeAuthResponse
 

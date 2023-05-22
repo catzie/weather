@@ -1,4 +1,4 @@
-package net.catzie.weather.datasource
+package net.catzie.weather.datasource.auth
 
 import android.content.Context
 import android.content.SharedPreferences

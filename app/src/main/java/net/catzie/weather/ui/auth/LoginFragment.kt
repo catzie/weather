@@ -14,6 +14,7 @@ import net.catzie.weather.databinding.FragmentLoginBinding
 import net.catzie.weather.model.ApiResult
 import net.catzie.weather.model.auth.FakeAuthResponse
 import net.catzie.weather.ui.main.MainActivity
+import timber.log.Timber
 
 class LoginFragment : Fragment() {
 
@@ -71,9 +72,7 @@ class LoginFragment : Fragment() {
 
             is ApiResult.Success -> {
 
-                // Display success message
-                val toastMessage = getString(R.string.login_res_success)
-                Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
+                Timber.e(getString(R.string.login_res_success))
 
                 // Launch MainActivity
                 val intent = Intent(activity, MainActivity::class.java)

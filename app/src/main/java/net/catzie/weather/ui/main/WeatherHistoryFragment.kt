@@ -44,7 +44,6 @@ class WeatherHistoryFragment : Fragment() {
 
         binding = FragmentWeatherHistoryBinding.inflate(inflater, container, false)
 
-        // Set the adapter
         setUpRecyclerView()
         setUpObservers()
 

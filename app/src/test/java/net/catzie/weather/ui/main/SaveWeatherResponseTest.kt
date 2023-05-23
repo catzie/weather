@@ -1,5 +1,6 @@
 package net.catzie.weather.ui.main
 
+import android.location.Location
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.google.gson.Gson
@@ -44,6 +45,9 @@ class SaveWeatherResponseTest {
     @Mock
     private lateinit var mockWeatherObserver: Observer<ApiResult<WeatherResponse>>
 
+    private val mockLocation = mock(Location::class.java)
+
+
     private val testJsonWeatherResponse =
         "{\"coord\":{\"lon\":121.0509,\"lat\":14.5176},\"weather\":[{\"id\":null,\"main\":\"Clouds\",\"description\":\"scattered clouds\",\"icon\":\"03d\"}],\"base\":\"stations\",\"main\":{\"temp\":32,\"feels_like\":39,\"temp_min\":31.09,\"temp_max\":32.19,\"pressure\":1011,\"humidity\":71},\"visibility\":10000,\"wind\":{\"speed\":3.58,\"deg\":271,\"gust\":8.05},\"clouds\":{\"all\":30},\"dt\":1684810824,\"sys\":{\"type\":2,\"id\":2005706,\"country\":\"PH\",\"sunrise\":1684790807,\"sunset\":1684837109},\"timezone\":28800,\"id\":1684309,\"name\":\"Taguig City\",\"cod\":200}"
     private val testWeatherRequest =
@@ -86,9 +90,11 @@ class SaveWeatherResponseTest {
                 testSuccessfulResponse
             )
             `when`(mockWeatherHistoryRepository.insert(testWeatherHistoryEntity)).thenReturn(anyLong())
+            `when`(mockLocation.latitude).thenReturn(COORD_TAGUIG.first)
+            `when`(mockLocation.longitude).thenReturn(COORD_TAGUIG.second)
 
             viewModel.weather.observeForever(mockWeatherObserver)
-            viewModel.getCurrentWeather(testWeatherRequest)
+            viewModel.getCurrentWeather(mockLocation)
 
             verify(mockWeatherHistoryRepository).insert(testWeatherHistoryEntity)
         }

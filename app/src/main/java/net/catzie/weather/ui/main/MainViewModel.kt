@@ -34,11 +34,6 @@ class MainViewModel(
         requestCurrentWeather()
     }
 
-
-    fun testCall() {
-
-    }
-
     fun onWeatherHistoryFragmentCreated() {
         requestWeatherHistory()
     }

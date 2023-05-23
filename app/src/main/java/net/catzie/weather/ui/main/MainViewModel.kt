@@ -31,15 +31,21 @@ class MainViewModel(
     val history: LiveData<ApiResult<List<WeatherHistoryEntity>>> = _history
 
     init {
-        requestCurrentWeather()
+        requestCurrentWeather(
+            WeatherRequest(
+                COORD_TAGUIG.first,
+                COORD_TAGUIG.second,
+                BuildConfig.API_KEY
+            )
+        )
     }
 
     fun onWeatherHistoryFragmentCreated() {
         requestWeatherHistory()
     }
 
-    fun getCurrentWeather() {
-        requestCurrentWeather()
+    fun getCurrentWeather(weatherRequest: WeatherRequest) {
+        requestCurrentWeather(weatherRequest)
     }
 
     private fun requestWeatherHistory() {
@@ -57,9 +63,8 @@ class MainViewModel(
         }
     }
 
-    private fun requestCurrentWeather() {
-        val weatherRequest =
-            WeatherRequest(COORD_TAGUIG.first, COORD_TAGUIG.second, BuildConfig.API_KEY)
+    private fun requestCurrentWeather(weatherRequest: WeatherRequest) {
+
         viewModelScope.launch {
             val res = weatherRepository.getWeather(weatherRequest)
 

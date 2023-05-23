@@ -7,6 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import net.catzie.weather.BuildConfig
+import net.catzie.weather.COORD_TAGUIG
 import net.catzie.weather.MyApplication
 import net.catzie.weather.R
 import net.catzie.weather.datasource.auth.AuthSessionManager
@@ -38,6 +39,15 @@ class MainViewModel(
 
         val weatherRequest =
             WeatherRequest(location.latitude, location.longitude, BuildConfig.API_KEY)
+
+        requestCurrentWeather(weatherRequest)
+    }
+
+    fun getCurrentWeather() {
+
+        // Since no location is provided, let's use the default
+        val weatherRequest =
+            WeatherRequest(COORD_TAGUIG.first, COORD_TAGUIG.second, BuildConfig.API_KEY)
 
         requestCurrentWeather(weatherRequest)
     }

@@ -3,7 +3,7 @@ package net.catzie.weather.ui.main
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import net.catzie.weather.Utils.Format.formatDateTime
+import net.catzie.weather.Utils.Format.formatTime
 import net.catzie.weather.databinding.FragmentWeatherHistoryListItemBinding
 import net.catzie.weather.model.weather.WeatherHistoryEntity
 import java.util.*
@@ -38,8 +38,8 @@ class WeatherHistoryRecyclerViewAdapter(
         binding.city.text = item.city
         binding.country.text = item.country
         binding.temp.text = item.temp.toString()
-        binding.sunriseTime.text = formatDateTime(item.sunriseTime)
-        binding.sunsetTime.text = formatDateTime(item.sunsetTime)
+        binding.sunriseTime.text = formatTime(item.sunriseTime)
+        binding.sunsetTime.text = formatTime(item.sunsetTime)
 
 
     }

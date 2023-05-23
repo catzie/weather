@@ -14,11 +14,15 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
+        setUpViews()
+        setUpTabbedLayout()
+
+    }
+
+    private fun setUpViews() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        setUpTabbedLayout()
     }
 
     private fun setUpTabbedLayout() {

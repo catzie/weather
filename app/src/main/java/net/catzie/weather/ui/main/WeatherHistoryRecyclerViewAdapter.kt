@@ -6,12 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import net.catzie.weather.Utils.Format.formatTime
 import net.catzie.weather.databinding.FragmentWeatherHistoryListItemBinding
 import net.catzie.weather.model.weather.WeatherHistoryEntity
-import java.util.*
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
 class WeatherHistoryRecyclerViewAdapter(
     private var dataSet: List<WeatherHistoryEntity>
 ) : RecyclerView.Adapter<WeatherHistoryRecyclerViewAdapter.ViewHolder>() {

@@ -93,7 +93,7 @@ class WeatherHistoryFragment : Fragment() {
 
     companion object {
 
-        // TODO: Customize parameter argument names
+        // Customize parameter argument names
         const val ARG_COLUMN_COUNT = "column-count"
     }
 }

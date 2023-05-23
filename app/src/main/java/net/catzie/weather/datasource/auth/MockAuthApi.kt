@@ -19,7 +19,6 @@ class MockAuthApi { // Non-mocked version will be ApiInterface
                 mockRetrofitResponse.code = 401
                 mockRetrofitResponse.body = null
             } else {
-                //todo success
                 mockRetrofitResponse.code = 200
                 mockRetrofitResponse.body = FakeAuthResponse(getRandomId().toString())
             }
@@ -39,7 +38,6 @@ class MockAuthApi { // Non-mocked version will be ApiInterface
                 mockRetrofitResponse.code = 401
                 mockRetrofitResponse.body = null
             } else {
-                //todo success
                 mockRetrofitResponse.code = 200
                 mockRetrofitResponse.body = FakeAuthResponse(getRandomId().toString())
             }

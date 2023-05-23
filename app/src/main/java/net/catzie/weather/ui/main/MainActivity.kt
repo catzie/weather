@@ -5,6 +5,8 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -14,12 +16,12 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.material.tabs.TabLayoutMediator
 import net.catzie.weather.R
 import net.catzie.weather.databinding.ActivityMainBinding
-import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private val viewModel: MainViewModel by viewModels { MainViewModel.Factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -93,8 +95,8 @@ class MainActivity : AppCompatActivity() {
     private fun showNoPermissionAlertDialog() {
 
         AlertDialog.Builder(this)
-            .setTitle("Location Permission Not Granted")
-            .setMessage("Until Location permission is granted, we'll fetch weather data for Taguig City, PH.")
+            .setTitle(getString(R.string.not_granted_title))
+            .setMessage(getString(R.string.location_permission_rationale))
             .setPositiveButton("OK") { dialog, _ ->
                 // Dismiss the dialog when the OK button is clicked
                 dialog.dismiss()
@@ -174,17 +176,17 @@ class MainActivity : AppCompatActivity() {
                 // Location retrieved successfully
                 location?.let {
 
-                    val latitude = it.latitude
-                    val longitude = it.longitude
-
-                    Timber.d("locfetch: lat=$latitude")
-                    Timber.d("locfetch: lon=$longitude")
+                    // Request weather data
+                    viewModel.getCurrentWeather(it)
                 }
             }
                 .addOnFailureListener { exception: Exception ->
-                    //todo Handle the failure case
-                    Timber.d("locfetch: e=${exception.message} ${exception.cause}")
-
+                    // Handle the failure case
+                    Toast.makeText(
+                        this,
+                        getString(R.string.location_permission_rationale),
+                        Toast.LENGTH_LONG
+                    ).show();
                 }
         }
     }

@@ -1,12 +1,12 @@
 package net.catzie.weather.ui.main
 
+import android.location.Location
 import androidx.lifecycle.*
 import androidx.lifecycle.viewmodel.CreationExtras
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import net.catzie.weather.BuildConfig
-import net.catzie.weather.COORD_TAGUIG
 import net.catzie.weather.MyApplication
 import net.catzie.weather.R
 import net.catzie.weather.datasource.auth.AuthSessionManager
@@ -30,21 +30,15 @@ class MainViewModel(
     private val _history = MutableLiveData<ApiResult<List<WeatherHistoryEntity>>>()
     val history: LiveData<ApiResult<List<WeatherHistoryEntity>>> = _history
 
-    init {
-        requestCurrentWeather(
-            WeatherRequest(
-                COORD_TAGUIG.first,
-                COORD_TAGUIG.second,
-                BuildConfig.API_KEY
-            )
-        )
-    }
-
     fun onWeatherHistoryFragmentCreated() {
         requestWeatherHistory()
     }
 
-    fun getCurrentWeather(weatherRequest: WeatherRequest) {
+    fun getCurrentWeather(location: Location) {
+
+        val weatherRequest =
+            WeatherRequest(location.latitude, location.longitude, BuildConfig.API_KEY)
+
         requestCurrentWeather(weatherRequest)
     }
 

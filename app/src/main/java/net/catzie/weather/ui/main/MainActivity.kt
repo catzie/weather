@@ -49,13 +49,15 @@ class MainActivity : AppCompatActivity() {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                 retrieveDeviceLocation()
-
             }
 
             // Denied
             else {
 
-                // Show Rationale If We Should...
+                // Request weather data using default coords
+                viewModel.getCurrentWeather()
+
+                // Show Rationale, If We Should...
                 if (ActivityCompat.shouldShowRequestPermissionRationale(
                         this,
                         Manifest.permission.ACCESS_COARSE_LOCATION
@@ -131,10 +133,14 @@ class MainActivity : AppCompatActivity() {
                         Manifest.permission.ACCESS_COARSE_LOCATION
                     )
                 ) {
+                    // Request weather data using default coords
+                    viewModel.getCurrentWeather()
+
+                    // Show rationale
                     showNoPermissionAlertDialog()
                 }
 
-                // Do Not Show Rationale
+                // Do Not Show Rationale, Just Request!
                 else {
                     ActivityCompat.requestPermissions(
                         this,
@@ -146,7 +152,7 @@ class MainActivity : AppCompatActivity() {
 
             // Already Granted
             else {
-                //todo Retrieve lat-lon
+                // Retrieve lat-lon
                 retrieveDeviceLocation()
             }
         }
@@ -190,6 +196,7 @@ class MainActivity : AppCompatActivity() {
                 }
         }
     }
+
 
     companion object {
         const val LOCATION_PERMISSION_REQUEST_CODE = 100

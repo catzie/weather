@@ -2,6 +2,7 @@ package net.catzie.weather.ui.main
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
@@ -13,6 +14,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.material.tabs.TabLayoutMediator
 import net.catzie.weather.R
 import net.catzie.weather.databinding.ActivityMainBinding
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +30,39 @@ class MainActivity : AppCompatActivity() {
 
         setUpLocationClient()
         requestLocationPermission()
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        // Handle Location Permission Request Result
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+
+            // Granted
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                retrieveDeviceLocation()
+
+            }
+
+            // Denied
+            else {
+
+                // Show Rationale If We Should...
+                if (ActivityCompat.shouldShowRequestPermissionRationale(
+                        this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    )
+                ) {
+                    showNoPermissionAlertDialog()
+                }
+            }
+        }
     }
 
     private fun setUpViews() {
@@ -110,7 +145,47 @@ class MainActivity : AppCompatActivity() {
             // Already Granted
             else {
                 //todo Retrieve lat-lon
+                retrieveDeviceLocation()
             }
+        }
+    }
+
+    private fun retrieveDeviceLocation() {
+
+        // Do not continue if permission is not granted
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED
+
+            &&
+
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+
+            return
+
+        }
+
+        // Proceed with location retrieval since we have permission
+        else {
+
+            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+
+                // Location retrieved successfully
+                location?.let {
+
+                    val latitude = it.latitude
+                    val longitude = it.longitude
+
+                    Timber.d("locfetch: lat=$latitude")
+                    Timber.d("locfetch: lon=$longitude")
+                }
+            }
+                .addOnFailureListener { exception: Exception ->
+                    //todo Handle the failure case
+                    Timber.d("locfetch: e=${exception.message} ${exception.cause}")
+
+                }
         }
     }
 

@@ -24,6 +24,7 @@ android {
 
         buildConfigField("String", "API_BASE_URL", secretProperties['API_BASE_URL'])
         buildConfigField("String", "API_KEY", secretProperties['API_KEY'])
+        buildConfigField("String", "ICONS_BASE_URL", secretProperties['ICONS_BASE_URL'])
 
     }
 
@@ -53,7 +54,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
 
-    //UI
+    //UI, Display
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation("io.coil-kt:coil:2.4.0")

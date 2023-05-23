@@ -33,6 +33,7 @@ class CurrentWeatherFragment : Fragment() {
 
         binding = FragmentCurrentWeatherBinding.inflate(inflater, container, false)
 
+        showLoadingIcon()
         setUpObservers()
 
         return binding.root
@@ -43,6 +44,8 @@ class CurrentWeatherFragment : Fragment() {
     }
 
     private fun displayCurrentWeather(apiResult: ApiResult<WeatherResponse>?) {
+
+        hideLoadingIcon()
 
         when (apiResult) {
 
@@ -88,5 +91,13 @@ class CurrentWeatherFragment : Fragment() {
         binding.tvSunset.text = formatTime(data.sys.sunset * 1000)
         binding.tvSunriseLabel.text = getString(R.string.sunrise)
         binding.tvSunsetLabel.text = getString(R.string.sunset)
+    }
+
+    private fun showLoadingIcon() {
+        binding.loading.visibility = View.VISIBLE
+    }
+
+    private fun hideLoadingIcon() {
+        binding.loading.visibility = View.GONE
     }
 }

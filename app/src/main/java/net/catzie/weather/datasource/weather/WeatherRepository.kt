@@ -11,7 +11,12 @@ class WeatherRepository(private val apiInterface: ApiInterface) {
     suspend fun getWeather(weatherRequest: WeatherRequest): Response<WeatherResponse> {
 
         val result =
-            apiInterface.getWeather(weatherRequest.lat, weatherRequest.lon, weatherRequest.appId)
+            apiInterface.getWeather(
+                weatherRequest.lat,
+                weatherRequest.lon,
+                "metric",
+                weatherRequest.appId
+            )
 
         return result
     }

@@ -13,6 +13,7 @@ import net.catzie.weather.R
 import net.catzie.weather.databinding.FragmentWeatherHistoryBinding
 import net.catzie.weather.model.ApiResult
 import net.catzie.weather.model.weather.WeatherHistoryEntity
+import timber.log.Timber
 
 class WeatherHistoryFragment : Fragment() {
 
@@ -79,9 +80,7 @@ class WeatherHistoryFragment : Fragment() {
 
             is ApiResult.Success -> {
 
-                // Display success message
-                val toastMessage = getString(R.string.weather_history_res_success)
-                Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
+                Timber.d(getString(R.string.weather_history_res_success))
 
                 // Update history
                 weatherHistoryAdapter.updateData(apiResult.data)

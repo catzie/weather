@@ -14,6 +14,7 @@ import net.catzie.weather.Utils.Format.formatTime
 import net.catzie.weather.databinding.FragmentCurrentWeatherBinding
 import net.catzie.weather.model.ApiResult
 import net.catzie.weather.model.weather.WeatherResponse
+import timber.log.Timber
 
 class CurrentWeatherFragment : Fragment() {
 
@@ -58,9 +59,7 @@ class CurrentWeatherFragment : Fragment() {
 
             is ApiResult.Success -> {
 
-                // Display success message
-                val toastMessage = getString(R.string.current_weather_res_success)
-                Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
+                Timber.d(getString(R.string.current_weather_res_success))
 
                 // Display data
                 displayWeatherData(apiResult.data)

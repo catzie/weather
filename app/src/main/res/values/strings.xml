@@ -26,5 +26,8 @@
     <string name="formatted_location_data">%1$s, %2$s</string>
     <string name="formatted_weather_icon_url">%1$s%2$s@2x.png</string>
     <string name="formatted_temperature_data">%1$s°C</string>
+    <string name="sunrise">Sunrise:</string>
+    <string name="sunset">Sunset:</string>
+    <string name="formatted_weather_name">%1$s (%2$s)</string>
 
 </resources>

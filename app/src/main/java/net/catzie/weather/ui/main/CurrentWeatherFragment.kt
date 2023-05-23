@@ -79,7 +79,14 @@ class CurrentWeatherFragment : Fragment() {
         )
         binding.tvTemp.text =
             getString(R.string.formatted_temperature_data, data.main.temp.toString())
+        binding.tvName.text = getString(
+            R.string.formatted_weather_name,
+            data.weather.first().main,
+            data.weather.first().description
+        )
         binding.tvSunrise.text = formatTime(data.sys.sunrise * 1000)
         binding.tvSunset.text = formatTime(data.sys.sunset * 1000)
+        binding.tvSunriseLabel.text = getString(R.string.sunrise)
+        binding.tvSunsetLabel.text = getString(R.string.sunset)
     }
 }

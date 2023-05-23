@@ -21,4 +21,10 @@
     <string name="tab_history">History</string>
     <string name="weather_history_res_failed">Error: Failed to load saved weather history.</string>
     <string name="weather_history_res_success">Weather History loaded!</string>
+    <string name="current_weather_res_success">Current weather fetched!</string>
+
+    <string name="formatted_location_data">%1$s, %2$s</string>
+    <string name="formatted_weather_icon_url">%1$s%2$s@2x.png</string>
+    <string name="formatted_temperature_data">%1$s°C</string>
+
 </resources>

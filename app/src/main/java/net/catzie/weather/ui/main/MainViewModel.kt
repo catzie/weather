@@ -38,6 +38,10 @@ class MainViewModel(
         requestWeatherHistory()
     }
 
+    fun getCurrentWeather() {
+        requestCurrentWeather()
+    }
+
     private fun requestWeatherHistory() {
         CoroutineScope(Dispatchers.IO).launch {
 

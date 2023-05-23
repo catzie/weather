@@ -1,24 +1,24 @@
 # weather
 
-## features
+## Features
 
-* mock login and registration page
-  * wrote a MockAuthApi to demonstrate login/registration flow
-* current weather tab
-  * if permission for location is granted, it displays information about the weather in your
+* Mock login and registration page
+  * Wrote `MockAuthApi` to demonstrate login/registration flow
+* Current weather tab
+  * If permission for location is granted, it displays information about the weather in your
     approximate location
-  * without location permission, the location defaults to "Taguig City, PH"
-  * each weather information fetched is saved in a Room database
-* weather history tab
-  * displays weather information that are saved in the Room database
+  * Without location permission, the location defaults to "Taguig City, PH"
+  * Each weather information fetched is saved in a Room database
+* Weather history tab
+  * Displays weather information that are saved in the Room database
 
-## possible updates in the future
+## Backlog
 
-* more unit tests
-* auth via Firebase
-* logout
-* cleaner code (especially MainActivity.kt)
-* and many more!
+* More unit tests
+* Auth via Firebase
+* Logout
+* Cleaner code (especially MainActivity.kt)
+* ...and many more!
 
 ## How to run the app
 

@@ -5,14 +5,14 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".ui.main.CurrentWeatherFragment">
 
     <TextView
         android:id="@+id/tv_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@id/iv_icon"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,8 +26,7 @@
         android:text="Sunrise:"
         app:layout_constraintBottom_toTopOf="@id/tv_sunset_label"
         app:layout_constraintEnd_toStartOf="@+id/tv_sunrise"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_temp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_sunset_label"
@@ -36,16 +35,19 @@
         android:text="Sunset:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tv_sunset"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sunrise_label" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/iv_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_logo_64"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="0dp"
         app:layout_constraintBottom_toTopOf="@id/tv_temp"
         app:layout_constraintEnd_toEndOf="parent"
+        tools:src="@drawable/ic_logo_64"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_location" />
 
@@ -53,14 +55,15 @@
         android:id="@+id/tv_temp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@id/tv_sunrise_label"
+        android:layout_marginBottom="30dp"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tv_sunrise_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_icon"
+        app:layout_constraintVertical_bias="0.015"
         tools:text="30'C" />
 
     <TextView
@@ -71,7 +74,6 @@
         app:layout_constraintBottom_toTopOf="@id/tv_sunset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tv_sunrise_label"
-        app:layout_constraintTop_toBottomOf="@+id/tv_temp"
         tools:text="Sunrise Time Here" />
 
     <TextView
@@ -82,4 +84,6 @@
         app:layout_constraintStart_toEndOf="@id/tv_sunset_label"
         app:layout_constraintTop_toTopOf="@+id/tv_sunset_label"
         tools:text="Sunset Time Here" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

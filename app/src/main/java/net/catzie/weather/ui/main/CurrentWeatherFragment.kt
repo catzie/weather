@@ -4,57 +4,82 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import coil.load
+import net.catzie.weather.BuildConfig
 import net.catzie.weather.R
+import net.catzie.weather.Utils.Format.formatTime
+import net.catzie.weather.databinding.FragmentCurrentWeatherBinding
+import net.catzie.weather.model.ApiResult
+import net.catzie.weather.model.weather.WeatherResponse
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [CurrentWeatherFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CurrentWeatherFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private lateinit var binding: FragmentCurrentWeatherBinding
+
+    val viewModel: MainViewModel by activityViewModels { MainViewModel.Factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_current_weather, container, false)
+    ): View {
+
+        binding = FragmentCurrentWeatherBinding.inflate(inflater, container, false)
+
+        setUpObservers()
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CurrentWeatherFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CurrentWeatherFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun setUpObservers() {
+        viewModel.weather.observe(viewLifecycleOwner, ::displayCurrentWeather)
+    }
+
+    private fun displayCurrentWeather(apiResult: ApiResult<WeatherResponse>?) {
+
+        when (apiResult) {
+
+            is ApiResult.Error -> {
+
+                // Display error message
+                val toastMessage = "Error: " + getString(apiResult.errorResId)
+                Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
             }
+
+            is ApiResult.Success -> {
+
+                // Display success message
+                val toastMessage = getString(R.string.current_weather_res_success)
+                Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
+
+                // Display data
+                displayWeatherData(apiResult.data)
+            }
+
+            else -> {}
+        }
+    }
+
+    private fun displayWeatherData(data: WeatherResponse) {
+        binding.tvLocation.text =
+            getString(R.string.formatted_location_data, data.name, data.sys.country)
+        binding.ivIcon.load(
+            getString(
+                R.string.formatted_weather_icon_url,
+                BuildConfig.ICONS_BASE_URL,
+                data.weather.first().icon
+            )
+        )
+        binding.tvTemp.text =
+            getString(R.string.formatted_temperature_data, data.main.temp.toString())
+        binding.tvSunrise.text = formatTime(data.sys.sunrise * 1000)
+        binding.tvSunset.text = formatTime(data.sys.sunset * 1000)
     }
 }

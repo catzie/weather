@@ -50,6 +50,7 @@ class MainViewModel(
             WeatherRequest(COORD_TAGUIG.first, COORD_TAGUIG.second, BuildConfig.API_KEY)
 
         requestCurrentWeather(weatherRequest)
+
     }
 
     private fun requestWeatherHistory() {
@@ -70,37 +71,42 @@ class MainViewModel(
     private fun requestCurrentWeather(weatherRequest: WeatherRequest) {
 
         viewModelScope.launch {
-            val res = weatherRepository.getWeather(weatherRequest)
+            try {
+                val res = weatherRepository.getWeather(weatherRequest)
 
-            if (res.code() == 200) {
+                if (res.code() == 200) {
 
-                // Handle success
-                res.body()?.let { weather ->
+                    // Handle success
+                    res.body()?.let { weather ->
 
-                    _weather.value = ApiResult.Success(weather)
+                        _weather.value = ApiResult.Success(weather)
 
-                    //save to storage
-                    val weatherHistory =
-                        WeatherHistoryEntity(
-                            null,
-                            weather.weather.first().main,
-                            weather.weather.first().description,
-                            weather.weather.first().icon,
-                            weather.name,
-                            weather.sys.country,
-                            weather.main.temp,
-                            weather.sys.sunrise,
-                            weather.sys.sunset,
-                        )
+                        //save to storage
+                        val weatherHistory =
+                            WeatherHistoryEntity(
+                                null,
+                                weather.weather.first().main,
+                                weather.weather.first().description,
+                                weather.weather.first().icon,
+                                weather.name,
+                                weather.sys.country,
+                                weather.main.temp,
+                                weather.sys.sunrise,
+                                weather.sys.sunset,
+                            )
 
-                    CoroutineScope(Dispatchers.IO).launch {
-                        weatherHistoryRepository.insert(weatherHistory)
+                        CoroutineScope(Dispatchers.IO).launch {
+                            weatherHistoryRepository.insert(weatherHistory)
+                        }
                     }
-                }
-            } else {
+                } else {
 
-                // Handle error
-                _weather.value = ApiResult.Error(R.string.weather_res_failed)
+                    // Handle error
+                    _weather.value = ApiResult.Error(R.string.weather_res_failed)
+                }
+            } catch (e: Exception) {
+                //Show error
+                _weather.postValue(ApiResult.Error(R.string.weather_res_failed_offline))
             }
         }
     }

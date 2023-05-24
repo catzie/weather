@@ -4,6 +4,8 @@
 
 * Mock login and registration page
   * Wrote `MockAuthApi` to demonstrate login/registration flow
+  * To go past the login/registration screen, simply fill all input fields and submit. Then the
+    system will take you to the Current Weather screen.
 * Current weather tab
   * If permission for location is granted, it displays information about the weather in your
     approximate location

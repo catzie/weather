@@ -41,6 +41,9 @@
       ICONS_BASE_URL="https://openweathermap.org/img/wn/"
     ```
 * Paste them as additional entries to the keys.properties file
+* Expect the API to distinguish between day and night by including a sun or moon accordingly in
+  their icon during the following weather conditions: clear sky, few clouds, and rain.
+  Reference:  https://openweathermap.org/weather-conditions
 
 ### 3. Run the app on Android Studio (or your favorite IDE for Android app development!)
 

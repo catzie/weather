@@ -10,6 +10,9 @@
   * If permission for location is granted, it displays information about the weather in your
     approximate location
   * Without location permission, the location defaults to "Taguig City, PH"
+  * If the app fails to access your location, please try to open Google Maps to ensure that your
+    device's "Last Location" data has a value. Until then, the location will also default to "
+    Taguig, PH"
   * Each weather information fetched is saved in a Room database
 * Weather history tab
   * Displays weather information that are saved in the Room database

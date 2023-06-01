@@ -16,6 +16,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.material.tabs.TabLayoutMediator
 import net.catzie.weather.R
 import net.catzie.weather.databinding.ActivityMainBinding
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -108,6 +109,20 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun showNoLocationRetrievedAlertDialog() {
+
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.not_retrieve_title))
+            .setMessage(getString(R.string.location_retrieve_rationale))
+            .setPositiveButton("OK") { dialog, _ ->
+                // Dismiss the dialog when the OK button is clicked
+                dialog.dismiss()
+            }
+            .create()
+            .show()
+
+    }
+
     private fun requestLocationPermission() {
 
         // Android versions below Android 10 (Q)
@@ -159,6 +174,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun retrieveDeviceLocation() {
+        Timber.d("foreverload: entered retrieveDeviceLocation()")
 
         // Do not continue if permission is not granted
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -169,6 +185,7 @@ class MainActivity : AppCompatActivity() {
             ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
             != PackageManager.PERMISSION_GRANTED
         ) {
+            Timber.d("foreverload: entered retrieveDeviceLocation(): return")
 
             return
 
@@ -177,13 +194,26 @@ class MainActivity : AppCompatActivity() {
         // Proceed with location retrieval since we have permission
         else {
 
+            Timber.d("foreverload: entered retrieveDeviceLocation(): Proceed with location retrieval since we have permission")
+
             fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
 
+
+                Timber.d("foreverload: location=${location}")
+
                 // Location retrieved successfully
-                location?.let {
+                if (location != null) {
 
                     // Request weather data
-                    viewModel.getCurrentWeather(it)
+                    viewModel.getCurrentWeather(location)
+
+                } else {
+
+                    // Request weather data using default coords
+                    viewModel.getCurrentWeather()
+
+                    // Show dialog regarding failed location request
+                    showNoLocationRetrievedAlertDialog()
                 }
             }
                 .addOnFailureListener { exception: Exception ->

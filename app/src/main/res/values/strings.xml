@@ -31,6 +31,8 @@
     <string name="sunset">Sunset:</string>
     <string name="formatted_weather_name">%1$s (%2$s)</string>
     <string name="location_permission_rationale">Until Location permission is granted, we\'ll fetch weather data for Taguig City, PH.</string>
+    <string name="location_retrieve_rationale">Thanks for granting permission to access your location. But until location is successfully retrieved from your device, we\'ll fetch weather data for Taguig City, PH.</string>
     <string name="not_granted_title">Location Permission Not Granted</string>
+    <string name="not_retrieve_title">Sorry, but we cannot retrieve your device\'s location.</string>
 
 </resources>

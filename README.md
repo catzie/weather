@@ -1,8 +1,5 @@
 # weather
 
-![Day Time Sample](screenshot_day_time.png?raw=true "Day Time Sample")
-![Night Time Sample](screenshot_night_time.png?raw=true "Night Time Sample")
-
 ## Features
 
 * Mock login and registration page
@@ -51,3 +48,6 @@
 ### 3. Run the app on Android Studio (or your favorite IDE for Android app development!)
 
 * Note that you may need to "sync project with gradle files" before being able to build the app
+
+![Day Time Sample](screenshot_day_time.png?raw=true "Day Time Sample")
+![Night Time Sample](screenshot_night_time.png?raw=true "Night Time Sample")

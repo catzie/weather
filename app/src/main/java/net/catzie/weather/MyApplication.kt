@@ -9,7 +9,9 @@ import net.catzie.weather.datasource.auth.AuthSessionManager
 import net.catzie.weather.datasource.weather.WeatherHistoryRepository
 import timber.log.Timber
 
-val COORD_TAGUIG = Pair(14.5176, 121.0509)
+val COORD_TAGUIG = Pair(14.5176, 121.0509) //GMT+8
+val COORD_ATLANTA = Pair(33.753746, -84.386330) // GMT-4 (Added to test day/night icon)
+val COORD_MEXICO = Pair(19.432608, -99.133209) // GMT-6 (Added to test day/night icon)
 
 class MyApplication : Application() {
 

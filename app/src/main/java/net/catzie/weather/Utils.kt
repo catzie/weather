@@ -13,11 +13,6 @@ object Utils {
     }
 
     object Format {
-        fun formatDateTime(timeInMillis: Long): String {
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-            val dateTime = Date(timeInMillis)
-            return dateFormat.format(dateTime)
-        }
 
         fun formatTime(timeInMillis: Long): String {
             val dateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())

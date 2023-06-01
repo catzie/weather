@@ -9,10 +9,8 @@
 * Current weather tab
   * If permission for location is granted, it displays information about the weather in your
     approximate location
-  * Without location permission, the location defaults to "Taguig City, PH"
-  * If the app fails to access your location, please try to open Google Maps to ensure that your
-    device's "Last Location" data has a value. Until then, the location will also default to "
-    Taguig, PH"
+  * Without location permission, or if the app fails to retrieve the device's location, default
+    location will be "Taguig City, PH"
   * Each weather information fetched is saved in a Room database
 * Weather history tab
   * Displays weather information that are saved in the Room database
@@ -54,3 +52,11 @@
 
 ![Day Time Sample](screenshot_day_time.png?raw=true "Day Time Sample")
 ![Night Time Sample](screenshot_night_time.png?raw=true "Night Time Sample")
+
+## Possible issues and how to fix them
+
+* App fails to access my devices location:
+  Please try to open Google Maps to ensure that your device's "Last Location" data has a value.
+  Until then, the location will also default to "Taguig, PH"
+* App is not starting, or app exits/crashes before I can use it:
+  Please go to the Weather app's settings and clear both App Storage and App Cache.

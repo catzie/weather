@@ -15,8 +15,10 @@ object Utils {
     object Format {
 
         fun formatTime(timeInMillis: Long): String {
+
             val dateFormat = SimpleDateFormat("h:mm a", Locale.getDefault())
             val dateTime = Date(timeInMillis)
+
             return dateFormat.format(dateTime)
         }
     }
